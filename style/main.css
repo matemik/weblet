@@ -13,22 +13,13 @@ body {
     overflow: hidden;
 }
 
-.logo_content .logo i {
-    font-size: 28px;
-    margin-right: 5px
-}
-
-.logo_content .logo .logo_name {
-    font-size: 20px;
-    font-weight: 400;
-}
-
 .sidebar {
     position: fixed;
     height: 100%;
     width: 240px;
-    background: #11101d;
+    background: #707070;
     padding: 6px 14px;
+    transition: all 0.5s ease;
 }
 
 .sidebar #btn {
@@ -66,7 +57,7 @@ body {
     border-radius: 12px;
     border: none;
     outline: none;
-    background: #1d1b31;
+    background: #989898;
     padding-left: 50px;
     font-size: 15px;
     color: #fff;
@@ -89,7 +80,7 @@ body {
 }
 
 .sidebar ul li a:hover {
-    color: #11101d;
+    color: #707070;
     background: #fff;
 }
 
@@ -101,36 +92,22 @@ body {
     text-align: center;
 }
 
-.sidebar .logo_content .logo {
-    color: #fff;
-    display: flex;
-    height: 50px;
-    width: 100%;
-    align-items: center;
-}
-
-.sidebar .profile_content {
+.home_content {
     position: absolute;
-    color: #fff;
-    bottom: 0;
-    left: 0;
+    height: 100%;
+    width: calc(100% - 240px);
+    left: 240px
 }
 
-.sidebar .profile_content .profile {
-    position: relative;
-    padding: 10px 6px;
-    height: 60px;
+.home_content .text {
+    font-size: 25px;
+    font-weight: 500;
+    margin: 35px;
+    color:#707070;
 }
 
-.sidebar .profile_content .profile .profile_details {
-    display: flex;
-    align-items: center;
-}
-
-.profile .profile_details .bxl-instagram {
-    height: 50px;
-    width: 50px;
-    border-radius: 12px;
-    line-height: 50px;
-    text-align: center;
+#map {
+    height: calc(100% - 200px);
+    width: calc(100% - 200px);
+    margin-left: 100px;
 }
