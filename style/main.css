@@ -92,14 +92,14 @@ body {
     text-align: center;
 }
 
-.home_content {
+.content {
     position: absolute;
     height: 100%;
     width: calc(100% - 240px);
     left: 240px
 }
 
-.home_content .text {
+.content .text {
     font-size: 25px;
     font-weight: 500;
     margin: 35px;
