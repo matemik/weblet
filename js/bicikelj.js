@@ -1,4 +1,4 @@
-const initMap = () => {
+const mapSettings = () => {
     // Initial info to define map
     initLat = 46.051367;
     initLng = 14.506542;
@@ -15,9 +15,14 @@ const initMap = () => {
     return map
 }
 
-const getData = (L) => {
+const getData = async () => {
+    const res = await fetch('https://opendata.si/promet/bicikelj/list/')
+    return await res.json()
+}
+
+const createMap = (L) => {
     // Create map
-    const map = initMap(L);
+    const map = mapSettings(L);
     
     // Create bike icon
     const bikeIcon = L.icon({
@@ -25,21 +30,36 @@ const getData = (L) => {
         iconSize: [30, 30]
     });
 
-    let xhr = new XMLHttpRequest();
+    const getData = async () => {
+        const res = await fetch('https://opendata.si/promet/bicikelj/list/')
+        const data = await res.json()        
+        const markers = data['markers']
 
-    xhr.open('GET', 'https://opendata.si/promet/bicikelj/list/', true);
-    xhr.onload = () => {
-        if (xhr.status == 200) {
-            data = JSON.parse(xhr.responseText);
-            markers = data['markers']
-            Object.keys(markers).forEach((key, i) => {
-                L.marker(
-                    [markers[key].lat, markers[key].lng], 
-                    {icon: bikeIcon}).addTo(map)
-            });
-        } else {
-            console.log("Could not fetch the data")
-        }
+        // Show datetime of last update
+        lastUpdated = new Date(data.updated * 1000).toLocaleString('sl-SI')
+        document.getElementById("last-updated").innerHTML = `Last update: ${lastUpdated}`
+
+        // Loop over markers
+        Object.keys(markers).forEach((key) => {
+            
+            // Add markers
+            const marker = L.marker(
+                [markers[key].lat, markers[key].lng], 
+                {icon: bikeIcon}
+            ).addTo(map)
+    
+            // Add tooltips
+            const tooltip = L.tooltip({
+                permanent: false,
+                direction: "auto",
+            }).setContent(`
+                    <p>${markers[key].address}</p>
+                    <p>Št. koles na voljo: ${markers[key]['station'].available}</p>
+                `)
+    
+            marker.bindTooltip(tooltip).openTooltip()
+            map.addLayer(marker)
+        });
     }
-    xhr.send();
+    getData()
 };

@@ -94,6 +94,7 @@ body {
 
 .content {
     position: absolute;
+    overflow-y: auto;
     height: 100%;
     width: calc(100% - 240px);
     left: 240px
@@ -106,8 +107,17 @@ body {
     color:#707070;
 }
 
-#map {
-    height: calc(100% - 200px);
-    width: calc(100% - 200px);
-    margin-left: 100px;
+.content .info {
+    margin: 35px;
+}
+
+.content .grid {
+    display: grid;
+    grid-template-columns: auto;
+    height: auto;
+    margin: 35px;
+}
+
+.content #map{
+    padding: 250px
 }
