@@ -97,31 +97,44 @@ body {
     overflow-y: auto;
     height: 100%;
     width: calc(100% - 240px);
-    left: 240px
+    left: 240px;
 }
 
 .content .text {
-    font-size: 25px;
+    font-size: 32px;
     font-weight: 500;
-    margin: 35px;
+    margin: 30px;
     color:#707070;
 }
 
-.content .info {
-    margin: 35px;
-}
-
 .content .grid {
-    display: grid;
-    grid-template-columns: auto;
-    height: auto;
-    margin: 35px;
+    margin-top: 30px;
+    height: 100%;
 }
 
-.content .grid-item {
-    margin: 20px
+.content .grid .grid-item {
+    height: 600px;
+    margin: 30px 200px;
+    border: 2px solid;
+    border-color: #707070;
+    border-radius: 12px;
+    background-color:#f0f0f0
 }
 
-.content #map{
-    padding: 250px
+.grid-item #map {
+    height: 400px;
+    margin: 50px
+}
+
+.info {
+    font-size: 24px;
+    margin: 35px 0px 0px 50px;
+}
+
+.subinfo {
+    font-size: 12px;
+    margin: 0px 50px 50px 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    border-color: #707070;
 }

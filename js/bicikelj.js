@@ -30,7 +30,7 @@ const getData = async (map) => {
 
     // Show datetime of last update
     lastUpdated = new Date(data.updated * 1000).toLocaleString('sl-SI')
-    document.getElementById("last-updated").innerHTML = `Last update: ${lastUpdated}`
+    document.getElementById("last-updated").innerHTML = `Last updated: ${lastUpdated}`
     
     // Create markers on map
     createMarkers(map, markers)
