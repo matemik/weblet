@@ -118,6 +118,10 @@ body {
     margin: 35px;
 }
 
+.content .grid-item {
+    margin: 20px
+}
+
 .content #map{
     padding: 250px
 }
