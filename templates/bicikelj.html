@@ -14,8 +14,10 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin="">
     </script>
-    <!-- <img src="https://img.icons8.com/ios-glyphs/30/000000/bicycle.png"/>
-    <a target="_blank" href="https://icons8.com/icon/62284/bicycle">Bicycle</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <title>BicikeLJ</title>
 </head>
 <body>
@@ -66,14 +68,24 @@
                 <div id="map"></div>     
             </div>
             <div class="grid-item">
-                <p class="info">Graf</p>   
-                <p class="subinfo">TBD</p>
+                <p class="info">Kolesa in parkirna mesta</p>   
+                <p class="subinfo">Število koles in parkirnih mest glede na postajo</p>
+                <figure class="highcharts-figure">
+                    <div id="stacked-bar"></div>
+                </figure>
             </div>
-            <div class="grid-item">
-                <p class="info">Graf</p>   
-                <p class="subinfo">TBD</p>
+        <div class="footer-container">
+            <div class="footer">
+                <div class="footer-column">
+                    <h2>Info</h2>
+                    <a href="https://github.com/zejn/prometapi">OpenDataAPI</a>
+                    <a href="https://github.com/matemik">Github</a>
+                    <a href="https://boxicons.com/">Boxicons</a>
+                    <a href="https://leafletjs.com/">Leaflet</a>
+                    <a href="https://icons8.com">Icons8</a>                    
+                </div>
             </div>
-        </div>  
+        </div>
         <script>
             createMap(L)
         </script>

@@ -34,6 +34,9 @@ const getData = async (map) => {
     
     // Create markers on map
     createMarkers(map, markers)
+
+    // Draw stacked-bar chart
+    drawStackedChart(markers)
 }
 
 const createMarkers = (map, markers) => {
@@ -69,5 +72,55 @@ const createMarkers = (map, markers) => {
 
         marker.bindTooltip(tooltip).openTooltip()
         map.addLayer(marker)
+    });
+}
+
+const drawStackedChart = (markers) => {
+
+    let data = {
+        'addresses': [],
+        'available': [],
+        'free': []
+    }
+
+    Object.keys(markers).forEach((key) => {
+        data['addresses'].push(markers[key].address)
+        data['available'].push(parseInt(markers[key].station.available))
+        data['free'].push(parseInt(markers[key].station.free))
+    })
+
+    Highcharts.chart('stacked-bar', {
+        chart: {
+            type: 'bar',
+            backgroundColor: '#f0f0f0'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: data['addresses']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total fruit consumption'
+            }
+        },
+        legend: {
+            reversed: true
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal',
+                pontWidth: 10
+            }
+        },
+        series: [{
+            name: 'Št. koles na voljo',
+            data: data['available']
+        }, {
+            name: 'Št. parkirnih mest na voljo',
+            data: data['free']
+        }]
     });
 }
