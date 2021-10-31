@@ -77,12 +77,14 @@ const createMarkers = (map, markers) => {
 
 const drawStackedChart = (markers) => {
 
+    // Initialize data format
     let data = {
         'addresses': [],
         'available': [],
         'free': []
     }
 
+    // Put data 
     Object.keys(markers).forEach((key) => {
         data['addresses'].push(markers[key].address)
         data['available'].push(parseInt(markers[key].station.available))
