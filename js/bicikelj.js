@@ -45,8 +45,8 @@ const createMarkers = (map, markers) => {
         iconSize: [30, 30]
     });
 
-    let blackBike = new BikeIcon({iconUrl: "/img/icons8-black-bicycle-30.png"}),
-        redBike = new BikeIcon({iconUrl: "/img/icons8-red-bicycle-30.png"})
+    let blackBike = new BikeIcon({iconUrl: "img/icons8-black-bicycle-30.png"}),
+        redBike = new BikeIcon({iconUrl: "img/icons8-red-bicycle-30.png"})
 
     // Loop over markers
     Object.keys(markers).forEach((key) => {
