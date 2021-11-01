@@ -24,19 +24,27 @@ const mapSettings = () => {
 }
 
 const getData = async (map) => {
-    const res = await fetch('https://opendata.si/promet/bicikelj/list/')
-    const data = await res.json()        
-    const markers = data['markers']
+    const url = 'https://opendata.si/promet/bicikelj/list/'
 
-    // Show datetime of last update
-    lastUpdated = new Date(data.updated * 1000).toLocaleString('sl-SI')
-    document.getElementById("last-updated").innerHTML = `Last updated: ${lastUpdated}`
-    
-    // Create markers on map
-    createMarkers(map, markers)
+    try {
+        const res = await fetch(url, {method: 'GET'})
+        const data = await res.json()
+        const markers = data['markers']
 
-    // Draw stacked-bar chart
-    drawStackedChart(markers)
+        // Show datetime of last update
+        lastUpdated = new Date(data.updated * 1000).toLocaleString('sl-SI')
+        document.getElementById("last-updated").innerHTML = `Last updated: ${lastUpdated}`
+        
+        // Create markers on map
+        createMarkers(map, markers)
+
+        // Draw stacked-bar chart
+        drawStackedChart(markers)
+    } catch (err) {
+        console.log(err)
+        const markers = {}
+        drawStackedChart(markers)
+    }
 }
 
 const createMarkers = (map, markers) => {
@@ -99,13 +107,16 @@ const drawStackedChart = (markers) => {
         title: {
             text: ''
         },
+        lang: {
+            noData: "Test"
+        },
         xAxis: {
             categories: data['addresses']
         },
         yAxis: {
             min: 0,
             title: {
-                text: 'Total fruit consumption'
+                text: 'Število postaj'
             }
         },
         legend: {
@@ -119,10 +130,12 @@ const drawStackedChart = (markers) => {
         },
         series: [{
             name: 'Št. koles na voljo',
-            data: data['available']
+            data: data['available'],
+            color: "#9ae17b"
         }, {
             name: 'Št. parkirnih mest na voljo',
-            data: data['free']
+            data: data['free'],
+            color: "#605a56"
         }]
     });
 }
