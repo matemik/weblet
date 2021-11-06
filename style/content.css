@@ -1,0 +1,41 @@
+.content {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100% - 80px);
+  width: 100%;
+}
+
+.text {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 30px;
+  color: #707070;
+}
+
+.grid-item {
+  margin: 30px 200px;
+  border: 2px solid;
+  border-color: #707070;
+  border-radius: 12px;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+#map {
+  height: 400px;
+  margin: 50px;
+}
+
+.info {
+  font-size: 24px;
+  margin: 35px 50px 0px 50px;
+}
+
+.subinfo {
+  font-size: 12px;
+  margin: 0px 50px 50px 50px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid;
+  border-color: #707070;
+}

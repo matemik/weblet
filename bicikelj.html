@@ -1,81 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/bicycle-favicon-16x16.png" sizes="16x16" />
-    <link rel="stylesheet" href="style/main.css">
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <script src="js/bicikelj.js"></script>
+    <link rel="stylesheet" href="style/main.css" />
+    <link rel="stylesheet" href="style/sidebar.css">
+    <link rel="stylesheet" href="style/content.css">
+    <link rel="stylesheet" href="style/bar-chart.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin=""/>
+        crossorigin="" />
+    <script src="js/bicikelj.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin="">
-    </script>
+        </script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <title>BicikeLJ</title>
 </head>
+
 <body>
     <div class="sidebar">
-        <ul class="nav_list">
-            <li>
-                <i class='bx bx-search' ></i>
-                <input type="text" placeholder="Išči...">
-            </li>
-            <li>
-                <a href="index.html">
-                    <i class='bx bxs-grid' ></i>
-                    <span class="links_name">Blog</span>
-                </a>
-            </li>
-            <li>
-                <a href="vreme.html">
-                    <i class='bx bxs-sun'></i>
-                    <span class="links_name">Vreme</span>
-                </a>
-            </li>
+        <ul>
             <li>
                 <a href="promet.html">
-                    <i class='bx bxs-traffic-cone' ></i>
-                    <span class="links_name">Promet</span>
+                    <i class='bx bxs-traffic-cone'></i>
+                    <span>Promet</span>
                 </a>
             </li>
             <li>
                 <a href="kamere.html">
-                    <i class='bx bxs-camera' ></i>
-                    <span class="links_name">Kamere</span>
+                    <i class='bx bxs-camera'></i>
+                    <span>Kamere</span>
                 </a>
             </li>
             <li>
                 <a href="bicikelj.html">
-                    <i class='bx bx-cycling' ></i>
-                    <span class="links_name">BicikeLJ</span>
+                    <i class='bx bx-cycling'></i>
+                    <span>BicikeLJ</span>
                 </a>
             </li>
         </ul>
     </div>
     <div class="content">
         <div class="text">BicikeLJ</div>
-        <div class="grid">             
-            <div class="grid-item">    
-                <p class="info">Zemljevid BicikeLJ postaj v Ljubljani</p>   
+        <div class="grid">
+            <div class="grid-item">
+                <p class="info">Zemljevid BicikeLJ postaj v Ljubljani</p>
                 <p class="subinfo" id="last-updated"></p>
-                <div id="map"></div>     
+                <div id="map"></div>
             </div>
             <div class="grid-item">
-                <p class="info">Kolesa in parkirna mesta</p>   
+                <p class="info">Kolesa in parkirna mesta</p>
                 <p class="subinfo">Število koles in parkirnih mest glede na postajo</p>
                 <figure class="highcharts-figure">
                     <div id="stacked-bar"></div>
                 </figure>
             </div>
-        <div class="footer-container">
             <div class="footer">
                 <div class="footer-column">
                     <h2>Info</h2>
@@ -83,11 +72,12 @@
                     <a href="https://github.com/matemik">Github</a>
                     <a href="https://boxicons.com/">Boxicons</a>
                     <a href="https://leafletjs.com/">Leaflet</a>
-                    <a href="https://icons8.com">Icons8</a>                    
+                    <a href="https://icons8.com">Icons8</a>
                 </div>
             </div>
+            <script>createMap(L)</script>
         </div>
-        <script>createMap(L)</script>
-    </div>    
+    </div>
 </body>
+
 </html>

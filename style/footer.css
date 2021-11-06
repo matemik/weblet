@@ -1,0 +1,33 @@
+.footer {
+  width: 100%;
+  color: #707070;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-column h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.footer-column a {
+  color: #707070;
+  font-size: 14px;
+}
+
+.footer-column a:hover {
+  color: #fff;
+  transition: 0.3 ease-out;
+}
+
+.footer p {
+  font-size: 14px;
+}
