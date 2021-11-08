@@ -1,8 +1,6 @@
 const createMap = (L) => {
-  // Create map
+  // Initialize map and get data
   const map = mapSettings(L);
-
-  // Get data from API
   getData(map);
 };
 
