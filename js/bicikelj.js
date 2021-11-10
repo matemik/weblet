@@ -24,28 +24,28 @@ const mapSettings = () => {
 
 const getData = async (map) => {
   const url = "https://opendata.si/promet/bicikelj/list/";
+  let res, data, markers;
 
   try {
-    const res = await fetch(url, { method: "GET" });
-    const data = await res.json();
-    const markers = data["markers"];
+    res = await fetch(url, { method: "GET" });
+    data = await res.json();
+    markers = data["markers"];
 
     // Show datetime of last update
     lastUpdated = new Date(data.updated * 1000).toLocaleString("sl-SI");
     document.getElementById(
       "last-updated"
     ).innerHTML = `Last updated: ${lastUpdated}`;
-
-    // Create markers on map
-    createMarkers(map, markers);
-
-    // Draw stacked-bar chart
-    drawStackedChart(markers);
   } catch (err) {
     console.log(err);
-    const markers = {};
-    drawStackedChart(markers);
+    markers = {};
   }
+  // Create markers on map
+  createMarkers(map, markers);
+
+  // Draw charts
+  stackedChart(markers);
+  pieChart(markers);
 };
 
 const createMarkers = (map, markers) => {
@@ -78,6 +78,7 @@ const createMarkers = (map, markers) => {
     }).setContent(`
             <p>${markers[key].address}</p>
             <p>Št. koles na voljo: ${markers[key]["station"].available}</p>
+            <p>Št. parkirnih mest na voljo: ${markers[key]["station"].free}</p>
         `);
 
     marker.bindTooltip(tooltip).openTooltip();
@@ -85,7 +86,7 @@ const createMarkers = (map, markers) => {
   });
 };
 
-const drawStackedChart = (markers) => {
+const chartData = (markers) => {
   // Initialize data format
   let data = {
     addresses: [],
@@ -98,7 +99,14 @@ const drawStackedChart = (markers) => {
     data["available"].push(parseInt(markers[key].station.available));
     data["free"].push(parseInt(markers[key].station.free));
   });
+  return data;
+};
 
+const stackedChart = (markers) => {
+  // Get data for chart
+  let data = chartData(markers);
+
+  // Draw chart
   Highcharts.chart("stacked-bar", {
     chart: {
       type: "bar",
@@ -137,7 +145,69 @@ const drawStackedChart = (markers) => {
       {
         name: "Št. parkirnih mest na voljo",
         data: data["free"],
-        color: "#605a56",
+        color: "#707070",
+      },
+    ],
+  });
+};
+
+const pieChart = (markers) => {
+  // Get data for chart
+  let data = chartData(markers);
+
+  // Calculate totals
+  let sumAvailable = data.available.reduce((acc, val) => acc + val);
+  let sumFree = data.free.reduce((acc, val) => acc + val);
+  let total = sumAvailable + sumFree;
+
+  Highcharts.chart("3d-pie", {
+    chart: {
+      type: "pie",
+      backgroundColor: "#f0f0f0",
+      options3d: {
+        enabled: true,
+        alpha: 40,
+        beta: 0,
+      },
+    },
+    title: {
+      text: "",
+    },
+    accessibility: {
+      point: {
+        valueSuffix: "%",
+      },
+    },
+    tooltip: {
+      pointFormat: "<b>{point.percentage:.1f}%</b>",
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: "pointer",
+        depth: 35,
+        dataLabels: {
+          enabled: true,
+          format: "{point.name}",
+        },
+      },
+    },
+    series: [
+      {
+        type: "pie",
+        data: [
+          {
+            name: "Kolesa na voljo",
+            y: (sumAvailable / total) * 100,
+            sliced: true,
+            color: "#9ae17b",
+          },
+          {
+            name: "Parkirna mesta na voljo",
+            y: (sumFree / total) * 100,
+            color: "#707070",
+          },
+        ],
       },
     ],
   });
